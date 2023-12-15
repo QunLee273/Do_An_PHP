@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="/baitaplon/admin/admin.css">
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+    
+
+  </head>
+  <body>
+    <nav class="sidebar">
+      <a href="#" class="logo"><i class="uil uil-apps"></i> Đại Học QNT</a>
+      <div class="menu-content">
+        <ul class="menu-items">
+          <!-- <div class="menu-title">Your menu title</div> -->
+          <li class="item">
+            <a href="#" onclick="showContent('Quản Lý Lớp Học')"><i class="uil uil-list-ul"></i> Quản Lý Lớp Học </a>
+          </li>
+          
+          <li class="item">
+            <a href="#" onclick="showContent('Quản lý người dùng')"><i class="uil uil-user"></i> Quản lý người dùng</a>
+          </li>
+          
+          <li class="item">
+            <a href="#" onclick="showContent('Quản Lý Môn Học')"><i class="uil uil-book-open"></i> Quản Lý Môn Học</a>
+          </li>
+          <li class="item">
+            <a href="#" onclick="showContent('Quản Lý Điểm')"><i class="uil uil-heart"></i> Quản Lý Điểm</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="navbar">
+
+    </nav>
+    <main class="main" id="content">
+      <h1>Chào Mừng Admin Quay Trở Lại</h1>
+    </main>
+    <script src="/baitaplon/admin/admin.js"></script>
+    <script>
+      function showContent(content) {
+        
+        document.getElementById('content').innerHTML = `<h1>${content}</h1>`;
+      }
+    </script>
+  </body>
+</html>
