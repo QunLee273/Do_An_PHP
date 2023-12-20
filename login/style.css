@@ -65,7 +65,7 @@ a{
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image: url("/baitaplon/png/background.png");
+    background-image: url("/Do_An_PHP/png/background.png");
     background-size: cover;
     background-position: center;
 }
@@ -239,9 +239,9 @@ footer {
 }
 
 .accordion li {
-    --img-1: url(/baitaplon/png/home_png/1.jpg);
-    --img-2: url(/baitaplon/png/home_png/2.jpg);
-    --img-3: url(/baitaplon/png/home_png/3.jpg);
+    --img-1: url(/Do_An_PHP/png/home_png/1.jpg);
+    --img-2: url(/Do_An_PHP/png/home_png/2.jpg);
+    --img-3: url(/Do_An_PHP/png/home_png/3.jpg);
 
     &:nth-child(1){
         background-image: var(--img-1);
