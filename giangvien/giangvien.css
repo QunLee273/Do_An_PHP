@@ -1,13 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+
 .main_box{
   position: relative;
-  background: url('png/speicherstadt-8008681_1280.jpg') right no-repeat;
+  background: url("/php/Do_An_PHP/png/giangvienbgr.jpg") right no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -133,7 +128,6 @@ th, td {
 th {
   background-color: #f2f2f2;
 }
-
 .right-table {
   width: 78% !important;
 }
@@ -142,4 +136,11 @@ th {
 }
 #menu{
   color: black !important;;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #fff !important;
 }
