@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 *{
     margin: 0;
-    padding: 0;
+    padding: 1px;
     box-sizing: border-box;
     font-family: "poppins" , sans-serif;
 }
@@ -228,6 +228,7 @@ footer {
     height: 250px;
     overflow: hidden;
     margin: 50px auto;
+    padding: 1px;
 }
 
 .accordion ul {
