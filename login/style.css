@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 *{
     margin: 0;
-    padding: 0;
+    padding: 1px;
     box-sizing: border-box;
     font-family: "poppins" , sans-serif;
 }
+
 a{
     text-decoration: none;
     
@@ -15,8 +16,6 @@ a{
     width: 100%;
     z-index: 100;
     padding: 0 20px;
-
-
 }
 
 .nav{
@@ -38,11 +37,9 @@ a{
 }
 .nav_logo{
     font-size: 25px;
-
 }
 .nav_items{
     column-gap:25px ;
-
 }
 .nav_link:hover{    
     color: #d9d9d9;
@@ -65,7 +62,7 @@ a{
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image: url("/Do_An_PHP/png/background.png");
+    background-image: url("/BTL_PHP/png/background.png");
     background-size: cover;
     background-position: center;
 }
@@ -227,7 +224,7 @@ footer {
     width: 98%;
     height: 250px;
     overflow: hidden;
-    margin: 50px auto;
+    margin: 100px auto;
 }
 
 .accordion ul {
@@ -239,9 +236,9 @@ footer {
 }
 
 .accordion li {
-    --img-1: url(/Do_An_PHP/png/home_png/1.jpg);
-    --img-2: url(/Do_An_PHP/png/home_png/2.jpg);
-    --img-3: url(/Do_An_PHP/png/home_png/3.jpg);
+    --img-1: url(/BTL_PHP/png/home_png/1.jpg);
+    --img-2: url(/BTL_PHP/png/home_png/2.jpg);
+    --img-3: url(/BTL_PHP/png/home_png/3.jpg);
 
     &:nth-child(1){
         background-image: var(--img-1);
@@ -272,7 +269,6 @@ footer {
 }
 
 .accordion li div a{
-
     display: block;
     height: 250px;
     width: 100%;

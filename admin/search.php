@@ -60,13 +60,13 @@
                     <a href="quanlylophoc.php"><i class="uil uil-list-ul"></i> Quản Lý Lớp Học </a>
                 </li>
                 <li class="item">
-                    <a href="#"><i class="uil uil-user"></i> Quản lý người dùng</a>
+                    <a href="#" onclick="showContent('Quản lý người dùng')"><i class="uil uil-user"></i> Quản lý người dùng</a>
                 </li>
                 <li class="item">
-                    <a href="#"><i class="uil uil-book-open"></i> Quản Lý Môn Học</a>
+                    <a href="#" onclick="showContent('Quản Lý Môn Học')"><i class="uil uil-book-open"></i> Quản Lý Môn Học</a>
                 </li>
                 <li class="item">
-                    <a href="#"><i class="uil uil-heart"></i> Quản Lý Điểm</a>
+                    <a href="#" onclick="showContent('Quản Lý Điểm')"><i class="uil uil-heart"></i> Quản Lý Điểm</a>
                 </li>
             </ul>
         </div>
@@ -75,14 +75,7 @@
     <main class="main" id="content">
         
         <form action="" method="post">
-        
-        <div class="manage-container">
-            <button class="manage-button" name="Them">Thêm</button>
-            <input type="text" name="timkiem">
-            <input type="submit" name="btnTim" value="Tìm Kiếm">
-        </div>
-
-        <table id="myTable">
+        <table>
             <tr>
                 <td><b>STT</b></td>
                 <td><b>Mã lớp</b></td>
@@ -92,8 +85,9 @@
             </tr>
             <?php
                 $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
+                $tim = $_POST['timkiem'];
 
-                $sql = "SELECT * FROM loaihang";
+                $sql = "SELECT * FROM loaihang WHERE MaLoai LIKE '%$tim%' OR TenLoai LIKE '%$tim%'";
                 $result = mysqli_query($con, $sql);
 
                 $stt = 1;
@@ -111,56 +105,23 @@
                         $stt++;
                     }
                 } else {
-                    echo "<tr><td colspan='5'>Không có lớp học nào.</td></tr>";
+                    echo "<tr><td colspan='5'>Không có kết quả tìm kiếm.</td></tr>";
                 }
             ?>
-            
         </table>
-        </form>
 
+        <div class="manage-container">
+            <button class="manage-button" name="Them">Thêm</button>
+            <input type="text" id="tim" name="timkiem">
+            <input type="submit" name="btnTim" value="Tìm Kiếm ">
+        </div>
         <?php
-            if(isset($_POST["Them"])){
-                header("Location: Them.php");
+            if(isset($_POST["btnTim"])){
+                header("Location: search.php");
                 exit;
             }
-
-            if(isset($_REQUEST["btnTim"])){
-                // Hàm chống sql injection
-                $tim = addcslashes($_GET['timkiem']);
-
-                // Kiểm tra tìm kiếm
-
-                if (!empty($tim)) {
-                    $query = "SELECT * FROM loaihang WHERE MaLoai LIKE '%$tim%' OR TenLoai LIKE '%$tim%'";
-
-                    $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
-
-                    $sql = mysqli_query($con, $query);
-
-                    // Đếm số dòng trả về trong sql
-                    $num = mysqli_num_rows($sql);
-
-                    $stt = 1;
-
-                    if ($num > 0 && $tim != "") {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>$stt</td>";
-                            echo "<td>" . $row["MaLoai"] . "</td>";
-                            echo "<td>" . $row["TenLoai"] . "</td>";
-                            echo "<td><a href='Sua.php?id=" . $row["MaLoai"] . "'>Sửa</a></td>";
-                            echo "<td><a href='Xoa.php?id=" . $row["MaLoai"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
-                            echo "</tr>";
-
-                            $stt++;
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Không tìm thấy lớp học.</td></tr>";
-                    }
-                }
-            }
         ?>
+        </form>
     </main>
-    <script src="admin.js"></script>
 </body>
 </html>
