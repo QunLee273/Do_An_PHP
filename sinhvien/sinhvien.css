@@ -24,11 +24,7 @@ body {
     width: 100%;
     height: 100vh;
     padding: 40px 50px 40px 40px;
-<<<<<<< HEAD
-    background-image: url('/xampp/htdocs/BTL_PHP/png/background2.png');
-=======
-    background-image: url('/php/Do_An_PHP/png/back-to-school.jpg');
->>>>>>> ef6e45d8c0f825750e6e4df3df5982e7abe16d19
+    background-image: url('/BTL_PHP/png/back-to-school.jpg');
     border-radius: 50px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box; 
@@ -36,7 +32,6 @@ body {
 
 body {
     margin: 0;
-    /* gyhfghckgh */
 }
 
 

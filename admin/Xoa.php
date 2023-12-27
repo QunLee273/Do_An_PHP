@@ -1,11 +1,11 @@
 <?php
-    $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
+    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
 
     if(isset($_GET["id"])){
-        $maLoai = $_GET["id"];
+        $maLop = $_GET["id"];
 
-        $sql = "DELETE FROM loaihang WHERE MaLoai = '$maLoai'";
-        $result = mysqli_query($con, $sql);
+        $sql = "DELETE FROM lop WHERE MaLop = '$maLop'";
+        $result = mysqli_query($conn, $sql);
 
         if($result){
             header("Location: quanlylophoc.php");
@@ -13,5 +13,5 @@
         }
     }
 
-    mysqli_close($con);
+    mysqli_close($conn);
 ?>

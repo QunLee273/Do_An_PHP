@@ -1,20 +1,20 @@
 <?php
-    $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
+    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
 
     $message = ""; // Initialize an empty message variable
 
     if(isset($_POST['Them'])) {
-        $maloai = $_POST['maloai'];
-        $tenhang = $_POST['tenhang'];
+        $malop = $_POST['malop'];
+        $tenlop = $_POST['tenlop'];
 
-        $checkSql = "SELECT * FROM loaihang WHERE MaLoai = '$maloai'";
-        $checkResult = mysqli_query($con, $checkSql);
+        $checkSql = "SELECT * FROM lop WHERE MaLop = '$malop'";
+        $checkResult = mysqli_query($conn, $checkSql);
 
         if(mysqli_num_rows($checkResult) > 0) {
-            $message = "Mã loại đã tồn tại";
+            $message = "Mã lớp đã tồn tại";
         } else {
-            $sql = "INSERT INTO loaihang (MaLoai, TenLoai) VALUES ('$maloai', '$tenhang')";
-            $result = mysqli_query($con, $sql);
+            $sql = "INSERT INTO lop (MaLop, TenLop) VALUES ('$malop', '$tenlop')";
+            $result = mysqli_query($conn, $sql);
         }
         if($result) {
             $message = "Thêm dữ liệu thành công";
@@ -49,18 +49,18 @@
         <table>
             <tr>
                 <td>
-                    Mã loại: 
+                    Mã lớp: 
                 </td>
                 <td>
-                    <input type="text" name="maloai">
+                    <input type="text" name="malop">
                 </td>
             </tr>
             <tr>
                 <td>
-                    Tên hàng:
+                    Tên lớp:
                 </td>
                 <td>
-                    <input type="text" name="tenhang">
+                    <input type="text" name="tenlop">
                 </td>
             </tr>
             <tr>

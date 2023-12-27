@@ -1,3 +1,7 @@
+<?php
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,88 +80,89 @@
         
         <form action="" method="post">
         
-        <div class="manage-container">
-            <button class="manage-button" name="Them">Thêm</button>
-            <input type="text" name="timkiem">
-            <input type="submit" name="btnTim" value="Tìm Kiếm">
-        </div>
+            <div class="manage-container">
+                <button class="manage-button" name="Them">Thêm</button>
+                <input type="text" name="timkiem">
+                <input type="submit" name="btnTim" value="Tìm Kiếm">
+            </div>
 
-        <table id="myTable">
-            <tr>
-                <td><b>STT</b></td>
-                <td><b>Mã lớp</b></td>
-                <td><b>Tên lớp</b></td>
-                <td><b>Sửa</b></td>
-                <td><b>Xóa</b></td>
-            </tr>
-            <?php
-                $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
+            <table id="myTable">
+                <tr>
+                    <td><b>STT</b></td>
+                    <td><b>Mã lớp</b></td>
+                    <td><b>Tên lớp</b></td>
+                    <td><b>Sửa</b></td>
+                    <td><b>Xóa</b></td>
+                </tr>
+                <?php
+                    if (isset($_POST["btnTim"])) {
+                        $tim = $_POST['timkiem'];
+                    
+                        if (!empty($tim)) {
+                            $sql = "SELECT * FROM lop WHERE MaLop LIKE '%$tim%' OR TenLop LIKE '%$tim%'";
+                            $tim_lopList = executeResult($sql);
 
-                $sql = "SELECT * FROM loaihang";
-                $result = mysqli_query($con, $sql);
-
-                $stt = 1;
-
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>$stt</td>";
-                        echo "<td>" . $row["MaLoai"] . "</td>";
-                        echo "<td>" . $row["TenLoai"] . "</td>";
-                        echo "<td><a href='Sua.php?id=" . $row["MaLoai"] . "'>Sửa</a></td>";
-                        echo "<td><a href='Xoa.php?id=" . $row["MaLoai"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
-                        echo "</tr>";
-
-                        $stt++;
+                            $stt = 1;
+                    
+                            if (!empty($tim_lopList)) {
+                                foreach ($tim_lopList as $lop) {
+                                    echo "<tr>";
+                                    echo "<td>$stt</td>";
+                                    echo "<td>" . $lop["MaLop"] . "</td>";
+                                    echo "<td>" . $lop["TenLop"] . "</td>";
+                                    echo "<td><a href='Sua.php?id=" . $lop["MaLop"] . "'>Sửa</a></td>";
+                                    echo "<td><a href='Xoa.php?id=" . $lop["MaLop"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
+                                    echo "</tr>";
+                    
+                                    $stt++;
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>Không tìm thấy lớp học.</td></tr>";
+                            }
+                        }else {
+                            $sql = "SELECT * FROM lop";
+                            $lopList = executeResult($sql);
+                    
+                            $stt = 1;
+                    
+                            foreach ($lopList as $lop) {
+                                echo "<tr>";
+                                echo "<td>$stt</td>";
+                                echo "<td>" . $lop["MaLop"] . "</td>";
+                                echo "<td>" . $lop["TenLop"] . "</td>";
+                                echo "<td><a href='Sua.php?id=" . $lop["MaLop"] . "'>Sửa</a></td>";
+                                echo "<td><a href='Xoa.php?id=" . $lop["MaLop"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
+                                echo "</tr>";
+                    
+                                $stt++;
+                            }
+                        }
+                    }else {
+                        $sql = "SELECT * FROM lop";
+                        $lopList = executeResult($sql);
+                
+                        $stt = 1;
+                
+                        foreach ($lopList as $lop) {
+                            echo "<tr>";
+                            echo "<td>$stt</td>";
+                            echo "<td>" . $lop["MaLop"] . "</td>";
+                            echo "<td>" . $lop["TenLop"] . "</td>";
+                            echo "<td><a href='Sua.php?id=" . $lop["MaLop"] . "'>Sửa</a></td>";
+                            echo "<td><a href='Xoa.php?id=" . $lop["MaLop"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
+                            echo "</tr>";
+                
+                            $stt++;
+                        }
                     }
-                } else {
-                    echo "<tr><td colspan='5'>Không có lớp học nào.</td></tr>";
-                }
-            ?>
-            
-        </table>
+                ?>
+            </table>
         </form>
 
         <?php
             if(isset($_POST["Them"])){
                 header("Location: Them.php");
                 exit;
-            }
-
-            if(isset($_REQUEST["btnTim"])){
-                // Hàm chống sql injection
-                $tim = addcslashes($_GET['timkiem']);
-
-                // Kiểm tra tìm kiếm
-
-                if (!empty($tim)) {
-                    $query = "SELECT * FROM loaihang WHERE MaLoai LIKE '%$tim%' OR TenLoai LIKE '%$tim%'";
-
-                    $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
-
-                    $sql = mysqli_query($con, $query);
-
-                    // Đếm số dòng trả về trong sql
-                    $num = mysqli_num_rows($sql);
-
-                    $stt = 1;
-
-                    if ($num > 0 && $tim != "") {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>$stt</td>";
-                            echo "<td>" . $row["MaLoai"] . "</td>";
-                            echo "<td>" . $row["TenLoai"] . "</td>";
-                            echo "<td><a href='Sua.php?id=" . $row["MaLoai"] . "'>Sửa</a></td>";
-                            echo "<td><a href='Xoa.php?id=" . $row["MaLoai"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
-                            echo "</tr>";
-
-                            $stt++;
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Không tìm thấy lớp học.</td></tr>";
-                    }
-                }
             }
         ?>
     </main>
