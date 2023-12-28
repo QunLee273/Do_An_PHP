@@ -2,7 +2,7 @@
 
 .main_box{
   position: relative;
-  background: url("/php/Do_An_PHP/png/giangvienbgr.jpg") right no-repeat;
+  background: url("/BTL_PHP/png/giangvienbgr.jpg") right no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100%;
@@ -142,5 +142,5 @@ th {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  color: #fff !important;
+  color: #010101 !important;
 }

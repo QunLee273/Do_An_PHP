@@ -1,23 +1,23 @@
 <?php
-    $con = mysqli_connect('localhost', 'user_bt', 'pass_bt', 'bt');
+    $con = mysqli_connect('localhost', 'root', '', 'qldsv');
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         
-        $sql = "SELECT * FROM loaihang WHERE MaLoai = '$id'";
+        $sql = "SELECT * FROM lop WHERE MaLop = '$id'";
         $result = mysqli_query($con, $sql);
         
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_assoc($result);
-            $tenLoai = $row["TenLoai"];
+            $tenLop = $row["TenLop"];
         }
     }
     
     if(isset($_POST["Sua"])){
         $id = $_POST["id"];
-        $tenLoaiMoi = $_POST["tenhang"];
+        $tenLopMoi = $_POST["tenlop"];
         
-        $sql = "UPDATE loaihang SET TenLoai = '$tenLoaiMoi' WHERE MaLoai = '$id'";
+        $sql = "UPDATE lop SET TenLop = '$tenLopMoi' WHERE MaLop = '$id'";
         $result = mysqli_query($con, $sql);
         header("Location: quanlylophoc.php");
         exit;
@@ -36,7 +36,7 @@
         <table>
             <tr>
                 <td>
-                    Mã hàng:
+                    Mã lớp:
                 </td>
                 <td>
                     <input type="text" name="id" value="<?php echo $id; ?>" readonly>
@@ -44,10 +44,10 @@
             </tr>
             <tr>
                 <td>
-                    Tên hàng:
+                    Tên lớp:
                 </td>
                 <td>
-                    <input type="text" name="tenhang" value="<?php echo $tenLoai; ?>" >
+                    <input type="text" name="tenlop" value="<?php echo $tenLop; ?>" >
                 </td>
             </tr>
             <tr>
