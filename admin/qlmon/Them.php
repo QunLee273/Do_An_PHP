@@ -6,6 +6,8 @@
     if(isset($_POST['Them'])) {
         $mamon = $_POST['mamon'];
         $tenmon = $_POST['tenmon'];
+        $sotc = $_POST['sotc'];
+        $magv = $_POST['magv'];
 
         $checkSql = "SELECT * FROM monhoc WHERE MaMon = '$mamon'";
         $checkResult = mysqli_query($conn, $checkSql);
@@ -13,7 +15,7 @@
         if(mysqli_num_rows($checkResult) > 0) {
             $message = "Mã Môn đã tồn tại";
         } else {
-            $sql = "INSERT INTO monhoc (MaMon, TenMon) VALUES ('$mamon', '$tenmon')";
+            $sql = "INSERT INTO monhoc (MaMon, TenMon, SoTinChi, MaGV) VALUES ('$mamon', '$tenmon', '$sotc', '$magv')";
             $result = mysqli_query($conn, $sql);
         }
         if($result) {
@@ -61,6 +63,22 @@
                 </td>
                 <td>
                     <input type="text" name="tenmon">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Số tín chỉ:
+                </td>
+                <td>
+                    <input type="text" name="sotc">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mã giang viên:
+                </td>
+                <td>
+                    <input type="text" name="magv">
                 </td>
             </tr>
             <tr>

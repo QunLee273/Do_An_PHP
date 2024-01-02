@@ -1,21 +1,21 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
-    $message = ""; // Initialize an empty message variable
+    $message = "";
 
     if(isset($_POST['Them'])) {
-        $malop = $_POST['malop'];
-        $tenlop = $_POST['tenlop'];
+        $msv = $_POST['msv'];
+        $hoten = $_POST['hoten'];
+        $date = $_POST['date'];
+        $gt = $_POST['gt'];
+        $lop = $_POST['lop'];
+        $email = $_POST['email'];
+        $diachi = $_POST['diachi'];
 
-        $checkSql = "SELECT * FROM lop WHERE MaLop = '$malop'";
-        $checkResult = mysqli_query($conn, $checkSql);
+        $sql = "INSERT INTO sinhvien (MSV, HoTen, NgaySinh, GioiTinh, MaLop, Email, DiaChi) 
+                VALUES ('$msv', '$hoten', '$date', '$gt', '$lop', '$email', '$diachi')";
+        $result = execute($sql);
 
-        if(mysqli_num_rows($checkResult) > 0) {
-            $message = "Mã lớp đã tồn tại";
-        } else {
-            $sql = "INSERT INTO lop (MaLop, TenLop) VALUES ('$malop', '$tenlop')";
-            $result = mysqli_query($conn, $sql);
-        }
         if($result) {
             $message = "Thêm dữ liệu thành công";
         } else {
@@ -38,7 +38,7 @@
                 if (result) {
                     window.location.href = 'Them.php';
                 }else{
-                    window.location.href = 'quanlylophoc.php';
+                    window.location.href = 'quanlysinhvien.php';
                 }
             }
         }
@@ -49,26 +49,66 @@
         <table>
             <tr>
                 <td>
-                    Mã lớp: 
+                    MSV: 
                 </td>
                 <td>
-                    <input type="text" name="malop">
+                    <input type="text" name="msv">
                 </td>
             </tr>
             <tr>
                 <td>
-                    Tên lớp:
+                    Họ tên: 
                 </td>
                 <td>
-                    <input type="text" name="tenlop">
+                    <input type="text" name="hoten">
                 </td>
             </tr>
             <tr>
                 <td>
-
+                    Ngày sinh(yyyy-mm-dd):
                 </td>
+                <td>
+                    <input type="date" name="date">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Giới tính:
+                </td>
+                <td>
+                    <input type="text" name="gt">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mã lớp:
+                </td>
+                <td>
+                    <input type="text" name="lop">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type="text" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Địa chỉ:
+                </td>
+                <td>
+                    <input type="text" name="diachi">
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <input type="submit" name="Them" value="Thêm">
+                </td>
+                <td>
+                    <a style="text-decoration: none; border: 1px solid black;" href="quanlysinhvien.php">Quay lại</a>
                 </td>
             </tr>
         </table>

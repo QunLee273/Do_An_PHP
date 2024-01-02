@@ -4,22 +4,26 @@
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         
-        $sql = "SELECT * FROM lop WHERE MaLop = '$id'";
+        $sql = "SELECT * FROM monhoc WHERE MaMon = '$id'";
         $result = mysqli_query($con, $sql);
         
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_assoc($result);
-            $tenLop = $row["TenLop"];
+            $tenmon = $row["TenMon"];
+            $sotc = $row["SoTinChi"];
+            $magv = $row["MaGV"];
         }
     }
     
     if(isset($_POST["Sua"])){
         $id = $_POST["id"];
-        $tenLopMoi = $_POST["tenlop"];
+        $n_tenmon = $_POST["tenmon"];
+        $n_sotc = $_POST["sotc"];
+        $n_magv = $_POST["magv"];
         
-        $sql = "UPDATE lop SET TenLop = '$tenLopMoi' WHERE MaLop = '$id'";
+        $sql = "UPDATE monhoc SET TenMon = '$n_tenmon', SoTinChi = '$n_sotc', MaGV = '$n_magv' WHERE MaMon = '$id'";
         $result = mysqli_query($con, $sql);
-        header("Location: quanlylophoc.php");
+        header("Location: quanlymonhoc.php");
         exit;
     }
 ?>
@@ -36,7 +40,7 @@
         <table>
             <tr>
                 <td>
-                    Mã lớp:
+                    Mã môn:
                 </td>
                 <td>
                     <input type="text" name="id" value="<?php echo $id; ?>" readonly>
@@ -44,15 +48,31 @@
             </tr>
             <tr>
                 <td>
-                    Tên lớp:
+                    Tên môn:
                 </td>
                 <td>
-                    <input type="text" name="tenlop" value="<?php echo $tenLop; ?>" >
+                    <input type="text" name="tenmon" value="<?php echo $tenmon; ?>" >
                 </td>
             </tr>
             <tr>
                 <td>
-
+                    Số tín chỉ:
+                </td>
+                <td>
+                    <input type="number" name="sotc" value="<?php echo $sotc; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mã giảng viên:
+                </td>
+                <td>
+                    <input type="number" name="magv" value="<?php echo $magv; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="text-decoration: none; border: 1px solid black;" href="quanlymonhoc.php">Quay lại</a>
                 </td>
                 <td>
                     <input type="submit" name="Sua" value="Sửa">

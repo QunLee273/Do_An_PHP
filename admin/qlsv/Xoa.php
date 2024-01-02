@@ -2,13 +2,13 @@
     $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
 
     if(isset($_GET["id"])){
-        $maLop = $_GET["id"];
+        $msv = $_GET["id"];
 
-        $sql = "DELETE FROM lop WHERE MaLop = '$maLop'";
+        $sql = "DELETE FROM sinhvien WHERE MSV = '$msv'";
         $result = mysqli_query($conn, $sql);
 
         if($result){
-            header("Location: quanlylophoc.php");
+            header("Location: quanlysinhvien.php");
             exit;
         }
     }

@@ -75,7 +75,13 @@
                     <a href="/BTL_PHP/admin/qlmon/quanlymonhoc.php"><i class="uil uil-book-open"></i> Quản lý môn học</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                </li>
+                <li class="item">
+                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-heart"></i> Quản lý giang viên</a>
+                </li>
+                <li class="item">
+                    <a href="/BTL_PHP/login/index.php"><i class="uil uil-heart"></i>Đăng xuất</a>
                 </li>
             </ul>
         </div>
@@ -94,11 +100,13 @@
             <table id="myTable">
                 <tr>
                     <td><b>STT</b></td>
+                    <td><b>MSV</b></td>
                     <td><b>Họ tên</b></td>
+                    <td><b>Ngày sinh</b></td>
+                    <td><b>Giới tính</b></td>
+                    <td><b>Lớp</b></td>
                     <td><b>Email</b></td>
-                    <td><b>Chức vụ</b></td>
-                    <td><b>Tài khoản</b></td>
-                    <td><b>Mật khẩu</b></td>
+                    <td><b>Địa chỉ</b></td>
                     <td><b>Sửa</b></td>
                     <td><b>Xóa</b></td>
                 </tr>
@@ -107,37 +115,44 @@
                         $tim = $_POST['timkiem'];
                     
                         if (!empty($tim)) {
-                            $sql = "SELECT * FROM taikhoan WHERE HoTen LIKE '%$tim%' OR Email LIKE '%$tim%' 
-                                                            OR ChucVu LIKE '%$tim%' OR TaiKhoan LIKE '%$tim%'
-                                                            OR MatKhau LIKE '%$tim%'";  
+                            $sql = "SELECT * FROM sinhvien 
+                                    LEFT JOIN lop ON sinhvien.MaLop = lop.MaLop
+                                    WHERE sinhvien.HoTen LIKE '%$tim%' OR sinhvien.Email LIKE '%$tim%' 
+                                    OR sinhvien.MSV LIKE '%$tim%' OR sinhvien.GioiTinh LIKE '%$tim%'
+                                    OR lop.TenLop LIKE '%$tim%' OR sinhvien.DiaChi LIKE '%$tim%'
+                                    OR sinhvien.NgaySinh LIKE '%$tim%'";
                         }else {
-                            $sql = "SELECT * FROM taikhoan";
+                            $sql = "SELECT * FROM sinhvien 
+                                    LEFT JOIN lop ON sinhvien.MaLop = lop.MaLop";
                         }   
                     }else {
-                        $sql = "SELECT * FROM taikhoan";
+                        $sql = "SELECT * FROM sinhvien 
+                                LEFT JOIN lop ON sinhvien.MaLop = lop.MaLop";
                     }
 
-                    $tkList = executeResult($sql);
+                    $sinhVienList = executeResult($sql);
 
                     $stt = 1;
             
-                    if (!empty($tkList)) {
-                        foreach ($tkList as $tk) {
+                    if (!empty($sinhVienList)) {
+                        $stt = 1;
+                        foreach ($sinhVienList as $sinhVien) {
                             echo "<tr>
-                                <td>$stt</td>
-                                <td>" . $tk["HoTen"] . "</td>
-                                <td>" . $tk["Email"] . "</td>
-                                <td>" . $tk["ChucVu"] . "</td>
-                                <td>" . $tk["TaiKhoan"] . "</td>
-                                <td>" . $tk["MatKhau"] . "</td>
-                                <td><a href='Sua.php?id=" . $tk["id"] . "'>Sửa</a></td>
-                                <td><a href='Xoa.php?id=" . $tk["id"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>
+                                    <td>$stt</td>
+                                    <td>" . $sinhVien["MSV"] . "</td>
+                                    <td>" . $sinhVien["HoTen"] . "</td>
+                                    <td>" . $sinhVien["NgaySinh"] . "</td>
+                                    <td>" . $sinhVien["GioiTinh"] . "</td>
+                                    <td>" . $sinhVien["TenLop"] . "</td>
+                                    <td>" . $sinhVien["Email"] . "</td>
+                                    <td>" . $sinhVien["DiaChi"] . "</td>
+                                    <td><a href='Sua.php?id=" . $sinhVien["MSV"] . "'>Sửa</a></td>
+                                    <td><a href='Xoa.php?id=" . $sinhVien["MSV"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>
                                 </tr>";
-                
                             $stt++;
                         }
                     } else {
-                        echo "<tr><td colspan='5'>Không có lớp học.</td></tr>";
+                        echo "<tr><td colspan='10'>Không có sinh viên.</td></tr>";
                     }
                 ?>
             </table>

@@ -72,7 +72,13 @@
                     <a href="/BTL_PHP/admin/qlmon/quanlymonhoc.php"><i class="uil uil-book-open"></i> Quản lý môn học</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                </li>
+                <li class="item">
+                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-heart"></i> Quản lý giang viên</a>
+                </li>
+                <li class="item">
+                    <a href="/BTL_PHP/login/index.php"><i class="uil uil-heart"></i>Đăng xuất</a>
                 </li>
             </ul>
         </div>
@@ -93,6 +99,8 @@
                     <td><b>STT</b></td>
                     <td><b>Mã môn</b></td>
                     <td><b>Tên môn</b></td>
+                    <td><b>Số t/c</b></td>
+                    <td><b>Giảng viên</b></td>
                     <td><b>Sửa</b></td>
                     <td><b>Xóa</b></td>
                 </tr>
@@ -101,12 +109,17 @@
                         $tim = $_POST['timkiem'];
                     
                         if (!empty($tim)) {
-                            $sql = "SELECT * FROM monhoc WHERE MaMon LIKE '%$tim%' OR TenMon LIKE '%$tim%'";  
+                            $sql = "SELECT * FROM monhoc 
+                                    LEFT JOIN giangvien ON monhoc.MaGV = giangvien.MaGV
+                                    WHERE monhoc.MaMon LIKE '%$tim%' OR monhoc.TenMon LIKE '%$tim%'
+                                    OR monhoc.SoTinChi LIKE '%$tim%' OR giangvien.HoTen LIKE '%$tim%'";  
                         }else {
-                            $sql = "SELECT * FROM monhoc";
+                            $sql = "SELECT * FROM monhoc
+                                    LEFT JOIN giangvien ON monhoc.MaGV = giangvien.MaGV";
                         }   
                     }else {
-                        $sql = "SELECT * FROM monhoc";
+                        $sql = "SELECT * FROM monhoc
+                                LEFT JOIN giangvien ON monhoc.MaGV = giangvien.MaGV";
                     }
 
                     $monList = executeResult($sql);
@@ -119,6 +132,8 @@
                             echo "<td>$stt</td>";
                             echo "<td>" . $mon["MaMon"] . "</td>";
                             echo "<td>" . $mon["TenMon"] . "</td>";
+                            echo "<td>" . $mon["SoTinChi"] . "</td>";
+                            echo "<td>" . $mon["HoTen"] . "</td>";
                             echo "<td><a href='Sua.php?id=" . $mon["MaMon"] . "'>Sửa</a></td>";
                             echo "<td><a href='Xoa.php?id=" . $mon["MaMon"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
                             echo "</tr>";

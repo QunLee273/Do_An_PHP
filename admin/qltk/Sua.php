@@ -18,7 +18,7 @@
     }
     
     if(isset($_POST["sua"])){
-        $n_id = $_POST["id"];
+        $id = $_POST["id"];
         $n_hoten = $_POST["hoten"];
         $n_email = $_POST["email"];
         $n_chucvu = $_POST["chucvu"];
@@ -28,7 +28,7 @@
         $sql = "UPDATE taikhoan SET HoTen = '$n_hoten', Email = '$n_email',
                                 ChucVu = '$n_chucvu', TaiKhoan = '$n_taik',
                                 MatKhau = '$n_mk' 
-                                WHERE id = '$n_id'";
+                                WHERE id = '$id'";
         execute($sql);
         header("Location: quanlynguoidung.php");
         exit;

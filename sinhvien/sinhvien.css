@@ -69,9 +69,9 @@ body {
     z-index: 12;
 }
 
-#home:checked~.list label.home,
-#blog:checked~.list label.blog,
-#help:checked~.list label.help,
+#diem:checked~.list label.diem,
+#lich:checked~.list label.lich,
+#dkmon:checked~.list label.dkmon,
 #code:checked~.list label.code,
 #about:checked~.list label.about {
     color: #fff;
@@ -92,15 +92,15 @@ body {
     transition: all 0.4s ease;
 }
 
-#home:checked~.list .slider {
+#diem:checked~.list .slider {
     top: 0;
 }
 
-#blog:checked~.list .slider {
+#lich:checked~.list .slider {
     top: 60px;
 }
 
-#help:checked~.list .slider {
+#dkmon:checked~.list .slider {
     top: 120px;
 }
 
@@ -131,31 +131,29 @@ body {
     text-align: justify;
 }
 
-.content .text-content .home {
+.content .text-content .diem {
     display: block;
 }
 
-#home:checked~.text-content .home,
-#blog:checked~.text-content .blog,
-#help:checked~.text-content .help,
+#diem:checked~.text-content .diem,
+#lich:checked~.text-content .lich,
+#dkmon:checked~.text-content .dkmon,
 #code:checked~.text-content .code,
 #about:checked~.text-content .about {
     display: block;
 }
 
-#blog:checked~.text-content .home,
-#help:checked~.text-content .home,
-#code:checked~.text-content .home,
-#about:checked~.text-content .home {
+#lich:checked~.text-content .diem,
+#dkmon:checked~.text-content .diem,
+#code:checked~.text-content .diem,
+#about:checked~.text-content .diem {
     display: none;
 }
 
-.content input {
-    display: none;
-}
 span.title{
     color: #fff;
 }
 i.fas.fa{
     color: #fff;
 }
+
