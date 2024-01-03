@@ -19,7 +19,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giảng viên</title>
+    <title>Giảng viên - QL điểm</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   </head>
@@ -50,7 +50,7 @@
             </li>
             <li>
               <i class="fas fa-link"></i>
-              <a href="#">Xem lịch</a>
+              <a href="/BTL_PHP/giangvien/lich.php">Xem lịch</a>
             </li>
             <li>
               <form action="" method="post">
@@ -75,15 +75,14 @@
 
   <div class="right-table">
       
-  <form action="" method="post">
-        
+    <form action="" method="post">
         <div class="manage-container">
             <button class="manage-button" name="Them"> <a href="Them.php">Thêm</a></button>
             <input type="text" name="timkiem">
             <input type="submit" name="btnTim" value="Tìm Kiếm">
         </div>
 
-        <table id="myTable">
+        <table id="myTable" border=1>
             <tr>
                 <td><b>STT</b></td>
                 <td><b>MSV</b></td>
@@ -141,7 +140,7 @@
                         $stt++;
                     }
                 } else {
-                    echo "<tr><td colspan='5'>Không có lớp học.</td></tr>";
+                    echo "<tr><td colspan='10'>Không có dữ liệu.</td></tr>";
                 }
             ?>
         </table>

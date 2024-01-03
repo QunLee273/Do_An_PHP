@@ -117,7 +117,7 @@
             </li>
             <li>
               <i class="fas fa-link"></i>
-              <a href="#">Xem lịch</a>
+              <a href="/BTL_PHP/giangvien/lich.php">Xem lịch</a>
             </li>
             <li>
               <form action="" method="post">

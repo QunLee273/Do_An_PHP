@@ -12,6 +12,7 @@
             $tenmon = $row["TenMon"];
             $sotc = $row["SoTinChi"];
             $magv = $row["MaGV"];
+            $lich = $row["Lich"];
         }
     }
     
@@ -20,8 +21,9 @@
         $n_tenmon = $_POST["tenmon"];
         $n_sotc = $_POST["sotc"];
         $n_magv = $_POST["magv"];
+        $n_lich = $_POST["lich"];
         
-        $sql = "UPDATE monhoc SET TenMon = '$n_tenmon', SoTinChi = '$n_sotc', MaGV = '$n_magv' WHERE MaMon = '$id'";
+        $sql = "UPDATE monhoc SET TenMon = '$n_tenmon', SoTinChi = '$n_sotc', MaGV = '$n_magv', Lich = '$n_lich' WHERE MaMon = '$id'";
         $result = mysqli_query($con, $sql);
         header("Location: quanlymonhoc.php");
         exit;
@@ -33,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sửa môn học</title>
 </head>
 <body>
     <form action="" method="post">
@@ -68,6 +70,14 @@
                 </td>
                 <td>
                     <input type="number" name="magv" value="<?php echo $magv; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Lịch:
+                </td>
+                <td>
+                    <input type="text" name="lich" value="<?php echo $lich; ?>" >
                 </td>
             </tr>
             <tr>

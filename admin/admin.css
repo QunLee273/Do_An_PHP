@@ -134,3 +134,7 @@ i.uil.uil:before{
 .hidden {
   display: none;
 }
+
+a {
+  color: black;
+}

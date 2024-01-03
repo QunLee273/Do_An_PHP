@@ -40,7 +40,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sửa giảng viên</title>
 </head>
 <body>
     <form action="" method="post">
@@ -98,7 +98,7 @@
                     <input type="submit" name="Sua" value="Sửa">
                 </td>
                 <td>
-                    <a style="text-decoration: none; border: 1px solid black;" href="quanlysinhvien.php">Quay lại</a>
+                    <a style="text-decoration: none; border: 1px solid black;" href="quanlygiangvien.php">Quay lại</a>
                 </td>
             </tr>
         </table>

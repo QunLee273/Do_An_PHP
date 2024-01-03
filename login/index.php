@@ -78,9 +78,8 @@
         </a>
         <ul class="nav_items">
            <li class="nav_items">
-            <a href="#header" class="nav_link">Home</a>
-            <a href="#" class="nav_link">Product</a>
-            <a href="#" class="nav_link">Services</a>
+            <a href="#" class="nav_link">Home</a>
+            <a href="#" class="nav_link">BLog</a>
             <a href="#footer" class="nav_link">Contact</a>
            </li>
         </ul>

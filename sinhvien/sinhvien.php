@@ -45,7 +45,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title> CSS Vertical Tabs | CodingLab </title>
+    <title> Sinh viên </title>
     <link rel="stylesheet" href="sinhvien.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@
         <form action="" method="post">
             <div class="topic">Sinh Viên QNT</div>
                 <label class="topic">
-                    <p><?php echo $hoten; ?></p>
+                    <p><?php echo $hoten; ?> - <a style="font-size: 24px; color: white;" href="/BTL_PHP/login/index.php">Đăng xuất</a></p>
                 </label>
             <div class="content">
                 <input type="radio" name="slider" style="display: none;" checked id="diem">
@@ -76,7 +76,6 @@
                         <span class="icon"><i class="far fa-envelope"></i></span>
                         <span class="title">Đăng Ký Môn</span>
                     </label>
-                    <a href="/BTL_PHP/login/index.php">Đăng xuất</a>
                     
                     <div class="slider"></div>
                 </div>
@@ -117,14 +116,14 @@
                                                         <td>" . $diem['ChuyenCan'] . "</td>
                                                         <td>" . $diem['GiuaKy'] . "</td>
                                                         <td>" . $diem['CuoiKy'] . "</td>
-                                                        <td>" . ($diem['ChuyenCan'] + $diem['GiuaKy']*2 + $diem['CuoiKy']*7)/10 . "</td>
+                                                        <td>" . $diem['DiemTB']. "</td>
                                                         <td>" . $diem['HoTen'] . "</td>
                                                         </tr>";
 
                                                         $stt++;
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='6'>Không có dữ liệu</td></tr>";
+                                                echo "<tr><td colspan='7'>Không có dữ liệu</td></tr>";
                                             }
 
                                         ?>      
@@ -162,7 +161,7 @@
                                                         $stt++;
                                                 }
                                             } else {
-                                                echo "<tr><td colspan='6'>Không có dữ liệu</td></tr>";
+                                                echo "<tr><td colspan='3'>Không có dữ liệu</td></tr>";
                                             }
                                         ?>
                                     </tbody>

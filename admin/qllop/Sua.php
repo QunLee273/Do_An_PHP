@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sửa lớp</title>
 </head>
 <body>
     <form action="" method="post">
@@ -52,10 +52,10 @@
             </tr>
             <tr>
                 <td>
-
+                    <input type="submit" name="sua" value="Sửa">
                 </td>
                 <td>
-                    <input type="submit" name="Sua" value="Sửa">
+                    <a style="text-decoration: none; border: 1px solid black;" href="quanlylophoc.php">Quay lại</a>
                 </td>
             </tr>
         </table>

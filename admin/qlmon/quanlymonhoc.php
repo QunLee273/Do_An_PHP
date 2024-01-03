@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
+    <title>Admin - QL môn học</title>
     <link rel="stylesheet" href="/BTL_PHP/admin/admin.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <style>
@@ -89,7 +89,7 @@
         <form action="" method="post">
         
             <div class="manage-container">
-                <button class="manage-button" name="Them">Thêm</button>
+                <button class="manage-button" name="Them"><a href="Them.php">Thêm</a></button>
                 <input type="text" name="timkiem">
                 <input type="submit" name="btnTim" value="Tìm Kiếm">
             </div>
@@ -101,6 +101,7 @@
                     <td><b>Tên môn</b></td>
                     <td><b>Số t/c</b></td>
                     <td><b>Giảng viên</b></td>
+                    <td><b>Lịch</b></td>
                     <td><b>Sửa</b></td>
                     <td><b>Xóa</b></td>
                 </tr>
@@ -134,6 +135,7 @@
                             echo "<td>" . $mon["TenMon"] . "</td>";
                             echo "<td>" . $mon["SoTinChi"] . "</td>";
                             echo "<td>" . $mon["HoTen"] . "</td>";
+                            echo "<td>" . $mon["Lich"] . "</td>";
                             echo "<td><a href='Sua.php?id=" . $mon["MaMon"] . "'>Sửa</a></td>";
                             echo "<td><a href='Xoa.php?id=" . $mon["MaMon"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
                             echo "</tr>";
@@ -146,13 +148,6 @@
                 ?>
             </table>
         </form>
-
-        <?php
-            if(isset($_POST["Them"])){
-                header("Location: Them.php");
-                exit;
-            }
-        ?>
     </main>
     <script src="/BTL_PHP/admin/admin.js"></script>
 </body>

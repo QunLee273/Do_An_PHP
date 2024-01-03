@@ -8,6 +8,7 @@
         $tenmon = $_POST['tenmon'];
         $sotc = $_POST['sotc'];
         $magv = $_POST['magv'];
+        $lich = $_POST['lich'];
 
         $checkSql = "SELECT * FROM monhoc WHERE MaMon = '$mamon'";
         $checkResult = mysqli_query($conn, $checkSql);
@@ -15,7 +16,7 @@
         if(mysqli_num_rows($checkResult) > 0) {
             $message = "Mã Môn đã tồn tại";
         } else {
-            $sql = "INSERT INTO monhoc (MaMon, TenMon, SoTinChi, MaGV) VALUES ('$mamon', '$tenmon', '$sotc', '$magv')";
+            $sql = "INSERT INTO monhoc (MaMon, TenMon, SoTinChi, MaGV, Lich) VALUES ('$mamon', '$tenmon', '$sotc', '$magv', '$lich')";
             $result = mysqli_query($conn, $sql);
         }
         if($result) {
@@ -31,7 +32,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thêm môn học</title>
     <script>
         function showConfirmationMessage() {
             var message = "<?php echo $message; ?>";
@@ -79,6 +80,14 @@
                 </td>
                 <td>
                     <input type="text" name="magv">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Lịch:
+                </td>
+                <td>
+                    <input type="text" name="lich">
                 </td>
             </tr>
             <tr>
