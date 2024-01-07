@@ -1,25 +1,34 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
-    $message = ""; // Initialize an empty message variable
+    $message = "";
 
     if(isset($_POST['Them'])) {
-        $malop = $_POST['malop'];
-        $tenlop = $_POST['tenlop'];
+        if (!empty($_POST['malop']) || !empty($_POST['tenlop'])) {
+            $malop = $_POST['malop'];
+            $tenlop = $_POST['tenlop'];
 
-        $checkSql = "SELECT * FROM lop WHERE MaLop = '$malop'";
-        $checkResult = mysqli_query($conn, $checkSql);
+            $checkSql = "SELECT * FROM lop WHERE MaLop = '$malop' OR TenLop = '$tenlop'";
+            $list = executeResult($checkSql);
 
-        if(mysqli_num_rows($checkResult) > 0) {
-            $message = "Mã lớp đã tồn tại";
+            if (!empty($list)) {
+                $message = '<span style="color: red;
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Mã lớp hoặc tên lớp đã tồn tại.</span>';
+            } else {
+                $sql = "INSERT INTO lop (MaLop, TenLop) VALUES ('$malop', '$tenlop')";
+                execute($sql);
+
+                echo '<script>alert("Thêm thành công");</script>';
+            }
         } else {
-            $sql = "INSERT INTO lop (MaLop, TenLop) VALUES ('$malop', '$tenlop')";
-            $result = mysqli_query($conn, $sql);
-        }
-        if($result) {
-            $message = "Thêm dữ liệu thành công";
-        } else {
-            $message = "Thêm dữ liệu thất bại";
+            $message = '<span style="color: red;
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Vui lòng nhập đầy đủ thông tin.</span>';
         }
     }
 ?>
@@ -30,21 +39,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm lớp</title>
-    <script>
-        function showConfirmationMessage() {
-            var message = "<?php echo $message; ?>";
-            if (message !== "") {
-                var result = confirm(message + ". Bạn có muốn thêm dữ liệu khác không?");
-                if (result) {
-                    window.location.href = 'Them.php';
-                }else{
-                    window.location.href = 'quanlylophoc.php';
-                }
-            }
-        }
-    </script>
+
+    <link rel="stylesheet" href="/BTL_PHP/admin/edit.css">
+
 </head>
-<body onload="showConfirmationMessage()">
+<body>
+        <h1>Thêm lớp</h1>
     <form action="" method="post">
         <table>
             <tr>
@@ -72,6 +72,7 @@
                 </td>
             </tr>
         </table>
+        <div><?php echo $message; ?></div>
     </form>
 </body>
 </html>

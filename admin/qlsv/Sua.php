@@ -1,6 +1,8 @@
 <?php
     require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
+    $message = '';
+
     if(isset($_GET["id"])){
         $msv = $_GET["id"];
         
@@ -28,12 +30,31 @@
         $n_email = $_POST['email'];
         $n_diachi = $_POST['diachi'];
         
-        $sql = "UPDATE sinhvien SET HoTen = '$n_hoten', NgaySinh = STR_TO_DATE('$n_date', '%Y-%m-%d'), 
+        if (!empty($msv) && !empty($n_hoten) && !empty($n_date) && !empty($n_gt) && !empty($n_lop) && !empty($n_email) && !empty($n_diachi)) {
+            $checkSql2 = "SELECT * FROM lop WHERE MaLop = '$n_lop'";
+            $list = executeResult($checkSql2);
+
+            if (empty($list)) {
+                $message = '<span style="color: red;
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Mã lớp không tồn tại.</span>';
+            } else {
+                $sql = "UPDATE sinhvien SET HoTen = '$n_hoten', NgaySinh = STR_TO_DATE('$n_date', '%Y-%m-%d'), 
                         GioiTinh = '$n_gt', MaLop = '$n_lop', Email = '$n_email', DiaChi = '$n_diachi' 
-                WHERE MSV = '$msv'";
-        execute($sql);
-        header("Location: quanlysinhvien.php");
-        exit;
+                        WHERE MSV = '$msv'";
+                execute($sql);
+                echo '<script>alert("Sửa thành công"); window.location.href = "quanlysinhvien.php";</script>';
+                exit;
+            }
+        } else {
+            $message = '<span style="color: red;
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Vui lòng nhập đầy đủ thông tin.</span>';
+        }
     }
 ?>
 
@@ -43,8 +64,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa sinh viên</title>
+
+    <link rel="stylesheet" href="/BTL_PHP/admin/edit.css">
+
 </head>
 <body>
+    <h1>Sửa sinh viên </h1>
     <form action="" method="post">
         <table>
             <tr>
@@ -112,6 +137,7 @@
                 </td>
             </tr>
         </table>
+        <div><?php echo $message; ?></div>
     </form>
 </body>
 </html>

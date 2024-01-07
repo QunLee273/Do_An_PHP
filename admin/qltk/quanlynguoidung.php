@@ -75,10 +75,10 @@
                     <a href="/BTL_PHP/admin/qlmon/quanlymonhoc.php"><i class="uil uil-book-open"></i> Quản lý môn học</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-user"></i> Quản lý sinh viên</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-heart"></i> Quản lý giang viên</a>
+                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-user"></i> Quản lý giảng viên</a>
                 </li>
                 <li class="item">
                     <a href="/BTL_PHP/login/index.php"><i class="uil uil-heart"></i>Đăng xuất</a>
@@ -88,9 +88,8 @@
     </nav>
     <nav class="navbar"></nav>
     <main class="main" id="content">
-        
         <form action="" method="post">
-        
+            <h1>Quản lý người dùng</h1>
             <div class="manage-container">
                 <button class="manage-button" name="Them"> <a href="Them.php">Thêm</a></button>
                 <input type="text" name="timkiem">
@@ -100,7 +99,7 @@
             <table id="myTable">
                 <tr>
                     <td><b>STT</b></td>
-                    <td><b>Họ tên</b></td>
+                    <td><b>Tên hiển thị</b></td>
                     <td><b>Email</b></td>
                     <td><b>Chức vụ</b></td>
                     <td><b>Tài khoản</b></td>
@@ -135,10 +134,17 @@
                                 <td>" . $tk["Email"] . "</td>
                                 <td>" . $tk["ChucVu"] . "</td>
                                 <td>" . $tk["TaiKhoan"] . "</td>
-                                <td>" . $tk["MatKhau"] . "</td>
-                                <td><a href='Sua.php?id=" . $tk["id"] . "'>Sửa</a></td>
-                                <td><a href='Xoa.php?id=" . $tk["id"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>
-                                </tr>";
+                                <td>" . $tk["MatKhau"] . "</td>";
+
+                            if ($tk["id"] == 1) {
+                                echo "<td></td>
+                                    <td></td>";
+                            } else {
+                                echo "<td><a href='Sua.php?id=" . $tk["id"] . "'>Sửa</a></td>
+                                    <td><a href='Xoa.php?id=" . $tk["id"] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa?\")'>Xóa</a></td>";
+                            }
+
+                            echo "</tr>";
                 
                             $stt++;
                         }

@@ -1,17 +1,13 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
     if(isset($_GET["id"])){
         $msv = $_GET["id"];
 
         $sql = "DELETE FROM sinhvien WHERE MSV = '$msv'";
-        $result = mysqli_query($conn, $sql);
+        execute($sql);
 
-        if($result){
-            header("Location: quanlysinhvien.php");
-            exit;
-        }
+        echo '<script>alert("Xóa thành công"); window.location.href = "quanlysinhvien.php";</script>';
+        exit;
     }
-
-    mysqli_close($conn);
 ?>

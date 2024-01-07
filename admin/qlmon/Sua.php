@@ -1,18 +1,18 @@
 <?php
-    $con = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         
         $sql = "SELECT * FROM monhoc WHERE MaMon = '$id'";
-        $result = mysqli_query($con, $sql);
+        $list = executeResult($sql);
         
-        if(mysqli_num_rows($result) > 0){
-            $row = mysqli_fetch_assoc($result);
-            $tenmon = $row["TenMon"];
-            $sotc = $row["SoTinChi"];
-            $magv = $row["MaGV"];
-            $lich = $row["Lich"];
+        if($list != null && count($list) > 0){
+            $mon = $list[0];
+            $tenmon = $mon["TenMon"];
+            $sotc = $mon["SoTinChi"];
+            $magv = $mon["MaGV"];
+            $lich = $mon["Lich"];
         }
     }
     
@@ -23,10 +23,31 @@
         $n_magv = $_POST["magv"];
         $n_lich = $_POST["lich"];
         
-        $sql = "UPDATE monhoc SET TenMon = '$n_tenmon', SoTinChi = '$n_sotc', MaGV = '$n_magv', Lich = '$n_lich' WHERE MaMon = '$id'";
-        $result = mysqli_query($con, $sql);
-        header("Location: quanlymonhoc.php");
-        exit;
+        if (!empty($n_tenmon) && !empty($n_sotc) && !empty($n_magv)) {
+            $checkSql = "SELECT * FROM giangvien WHERE MaGV = '$n_magv'";
+            $list = executeResult($checkSql);
+
+            if (empty($list)) {
+                $message = '<span style="color: red;
+                                    margin-top: 10px;
+                                    display: block;
+                                    text-align: center;
+                                    ">Mã GV không tồn tại.</span>';
+            } else {
+                $sql = "UPDATE monhoc SET TenMon = '$n_tenmon', SoTinChi = '$n_sotc', MaGV = '$n_magv', Lich = '$n_lich' 
+                    WHERE MaMon = '$id'";
+                execute($sql);
+
+                echo '<script>alert("Sửa thành công"); window.location.href = "quanlymonhoc.php";</script>';
+                exit;
+            }
+        } else {
+            $message = '<span style="color: red;
+                                    margin-top: 10px;
+                                    display: block;
+                                    text-align: center;
+                                    ">Vui lòng nhập đầy đủ thông tin.</span>';
+        }
     }
 ?>
 
@@ -36,9 +57,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa môn học</title>
+
+    <link rel="stylesheet" href="/BTL_PHP/admin/edit.css">
+
 </head>
 <body>
+    <h1>Sửa môn học</h1>
     <form action="" method="post">
+        
         <table>
             <tr>
                 <td>
@@ -89,6 +115,7 @@
                 </td>
             </tr>
         </table>
+        <div><?php echo $message; ?></div>
     </form>
 </body>
 </html>

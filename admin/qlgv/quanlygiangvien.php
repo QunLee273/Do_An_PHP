@@ -75,10 +75,10 @@
                     <a href="/BTL_PHP/admin/qlmon/quanlymonhoc.php"><i class="uil uil-book-open"></i> Quản lý môn học</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-heart"></i> Quản lý sinh viên</a>
+                    <a href="/BTL_PHP/admin/qlsv/quanlysinhvien.php"><i class="uil uil-user"></i> Quản lý sinh viên</a>
                 </li>
                 <li class="item">
-                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-heart"></i> Quản lý giang viên</a>
+                    <a href="/BTL_PHP/admin/qlgv/quanlygiangvien.php"><i class="uil uil-user"></i> Quản lý giảng viên</a>
                 </li>
                 <li class="item">
                     <a href="/BTL_PHP/login/index.php"><i class="uil uil-heart"></i>Đăng xuất</a>
@@ -90,7 +90,9 @@
     <main class="main" id="content">
         
         <form action="" method="post">
-        
+            <div>
+                <h1>Quản lý giảng viên</h1>
+            </div>
             <div class="manage-container">
                 <button class="manage-button" name="Them"> <a href="Them.php">Thêm</a></button>
                 <input type="text" name="timkiem">

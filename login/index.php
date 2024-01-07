@@ -21,36 +21,37 @@
             $user = $_POST['user'];
             $pass = $_POST['password'];
 
-            $sql = "SELECT * FROM taikhoan ";
+            $sql = "SELECT * FROM taikhoan WHERE TaiKhoan = '$user'";
             $dnList = executeResult($sql);
 
-            if ($user != '' && $pass != ''){
-                foreach ($dnList as $dn) {
-                    if ($user == $dn["TaiKhoan"] && $pass == $dn["MatKhau"]){
-                        $email = $dn["Email"];
-                        $_SESSION["email"] = $email;
+            if ($dnList != null && count($dnList) > 0) {
+                $dn = $dnList[0];
+                if ($user == $dn["TaiKhoan"] && $pass == $dn["MatKhau"]){
+                    $email = $dn["Email"];
+                    $_SESSION["email"] = $email;
 
-                        if (isset($_POST['remember'])) {
-                            // Lưu tên người dùng và mật khẩu vào cookie
-                            $remember_data = $user . ':' . $pass;
-                            setcookie('remember_me', $remember_data, time() + $cookie_time);
-                        } else {
-                            // Xóa cookie nếu không chọn Remember Me
-                            setcookie('remember_me', '', time() - 1);
-                        }
+                    if (isset($_POST['remember'])) {
+                        // Lưu tên người dùng và mật khẩu vào cookie
+                        $remember_data = $user . ':' . $pass;
+                        setcookie('remember_me', $remember_data, time() + $cookie_time);
+                    } else {
+                        // Xóa cookie nếu không chọn Remember Me
+                        setcookie('remember_me', '', time() - 1);
+                    }
 
-                        if ($dn["ChucVu"] == "Quản trị viên"){
-                            header("Location: /BTL_PHP/admin/admin.html");
-                            exit;
-                        }elseif ($dn["ChucVu"] == "Giảng viên") {
-                            header("Location: /BTL_PHP/giangvien/giangvien.php");
-                            exit;
-                        }else{
-                            header("Location: /BTL_PHP/sinhvien/sinhvien.php");
-                            exit;
-                        }
+                    if ($dn["ChucVu"] == "Quản trị viên"){
+                        header("Location: /BTL_PHP/admin/admin.html");
+                        exit;
+                    }elseif ($dn["ChucVu"] == "Giảng viên") {
+                        header("Location: /BTL_PHP/giangvien/giangvien.php");
+                        exit;
+                    }else{
+                        header("Location: /BTL_PHP/sinhvien/sinhvien.php");
+                        exit;
                     }
                 }
+            } else {
+                echo '<script>alert("Sai tài khoản hoặc mật khẩu");</script>';
             }
         }
     }
@@ -114,41 +115,6 @@
                         <button name="login" class="button">Login now</button>
                     </form>
                 </div>
-        </div>
-        
-        <div class="accordion">
-            <ul>
-                <li>
-                    <div>
-                        <a href="">
-                            <h2>
-                                lorem ipsum
-                            </h2>
-                            <p>Amet consectetur adipisicing elit</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <a href="">
-                            <h2>
-                                lorem ipsum
-                            </h2>
-                            <p>Amet consectetur adipisicing elit</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <a href="">
-                            <h2>
-                                lorem ipsum
-                            </h2>
-                            <p>Amet consectetur adipisicing elit</p>
-                        </a>
-                    </div>
-                </li>
-            </ul>
         </div>
     </section>
     <footer id="footer">

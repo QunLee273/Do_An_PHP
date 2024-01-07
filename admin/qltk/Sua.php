@@ -1,6 +1,8 @@
 <?php
     require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
+    $message = "";
+
     if(isset($_GET["id"])){
         $id = $_GET["id"];
         
@@ -24,14 +26,31 @@
         $n_chucvu = $_POST["chucvu"];
         $n_taik = $_POST["taikhoan"];
         $n_mk = $_POST["pass"];
-        
-        $sql = "UPDATE taikhoan SET HoTen = '$n_hoten', Email = '$n_email',
+
+        if (!empty($n_hoten) && !empty($n_email) && !empty($n_chucvu) && !empty($n_taik) && !empty($n_mk)) {
+            $sql = "SELECT * FROM taikhoan WHERE TaiKhoan = '$n_taik'";
+            $list = executeResult($sql);
+            
+            if (empty($list)) {
+                $sql = "UPDATE taikhoan SET HoTen = '$n_hoten', Email = '$n_email',
                                 ChucVu = '$n_chucvu', TaiKhoan = '$n_taik',
-                                MatKhau = '$n_mk' 
+                                MatKhau = '$n_mk', Code = ''
                                 WHERE id = '$id'";
-        execute($sql);
-        header("Location: quanlynguoidung.php");
-        exit;
+                execute($sql);
+
+                echo '<script>alert("Sửa thành công"); window.location.href = "quanlynguoidung.php";</script>';
+                exit;
+            } else {
+                $message = '<span style="color: red;
+                                            margin-top: 10px;
+                                            display: block;
+                                            text-align: center;
+                                            ">Tài khoản đã tồn tại.</span>';
+                        
+            }
+        }
+        
+        
     }
 ?>
 
@@ -41,6 +60,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa người dùng</title>
+
+    <link rel="stylesheet" href="/BTL_PHP/admin/edit.css">
+
     <script>
         // ẩn hiện mật khẩu
         function anHienPass() {
@@ -56,12 +78,13 @@
     </script>
 </head>
 <body>
+    <h1>Sửa tài khoản</h1>
     <form action="" method="post">
         <input type="number" name="id" value="<?php echo $id;?>" style="display: none;">
         <table>
         <tr>
                 <td>
-                    Họ tên: 
+                    Tên hiển thị: 
                 </td>
                 <td>
                     <input type="text" name="hoten" value="<?php echo $hoten; ?>">
@@ -72,7 +95,7 @@
                     Email:
                 </td>
                 <td>
-                    <input type="text" name="email" value="<?php echo $email; ?>">
+                    <input type="text" name="email" value="<?php echo $email; ?>" readonly>
                 </td>
             </tr>
             <tr>
@@ -80,7 +103,7 @@
                     Chức vụ:
                 </td>
                 <td>
-                    <input type="text" name="chucvu" value="<?php echo $chucvu; ?>">
+                    <input type="text" name="chucvu" value="<?php echo $chucvu; ?>" readonly>
                 </td>
             </tr>
             <tr>
@@ -116,6 +139,7 @@
                 </td>
             </tr>
         </table>
+        <div><?php echo $message; ?></div>
     </form>
 </body>
 </html>

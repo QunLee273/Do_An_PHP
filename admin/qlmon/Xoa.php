@@ -1,17 +1,13 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
     if(isset($_GET["id"])){
         $mamon= $_GET["id"];
 
         $sql = "DELETE FROM monhoc WHERE MaMon = '$mamon'";
-        $result = mysqli_query($conn, $sql);
+        execute($sql);
 
-        if($result){
-            header("Location: quanlymonhoc.php");
-            exit;
-        }
+        echo '<script>alert("Xóa thành công"); window.location.href = "quanlymonhoc.php";</script>';
+        exit;
     }
-
-    mysqli_close($conn);
 ?>

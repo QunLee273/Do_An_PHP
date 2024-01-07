@@ -108,7 +108,7 @@ i.uil.uil:before{
   color: #fff;
   padding: 15px 20px;
   font-size: 25px;
-  background: #4070f4;
+  background: #000dff;
   cursor: pointer;
 }
 .navbar #sidebar-close {
@@ -121,7 +121,7 @@ i.uil.uil:before{
   justify-content: center;
   height: 100vh;
   z-index: 100;
-  background: #334c66;
+  background: #a7a6a6;
 }
 .main h1 {
   color: #11101d;

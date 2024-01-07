@@ -1,6 +1,8 @@
 <?php
     require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
+    $message = '';
+
     if(isset($_GET["id"])){
         $mgv = $_GET["id"];
         
@@ -25,13 +27,21 @@
         $n_gt = $_POST['gt'];
         $n_email = $_POST['email'];
         $n_diachi = $_POST['diachi'];
-        
-        $sql = "UPDATE giangvien SET HoTen = '$n_hoten', NgaySinh = STR_TO_DATE('$n_date', '%Y-%m-%d'), 
-                        GioiTinh = '$n_gt', Email = '$n_email', DiaChi = '$n_diachi' 
-                WHERE MaGV = '$mgv'";
-        execute($sql);
-        header("Location: quanlygiangvien.php");
-        exit;
+        if (!empty($mgv) && !empty($n_hoten) && !empty($n_date) && !empty($n_gt) && !empty($n_email) && !empty($n_diachi)) {   
+            $sql = "UPDATE giangvien SET HoTen = '$n_hoten', NgaySinh = STR_TO_DATE('$n_date', '%Y-%m-%d'), 
+                            GioiTinh = '$n_gt', Email = '$n_email', DiaChi = '$n_diachi' 
+                    WHERE MaGV = '$mgv'";
+            execute($sql);
+
+            echo '<script>alert("Sửa thành công"); window.location.href = "quanlygiangvien.php";</script>';
+            exit;
+        } else {
+            $message = '<span style="color: red;
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Vui lòng nhập đầy đủ thông tin.</span>';
+        }
     }
 ?>
 
@@ -41,8 +51,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa giảng viên</title>
+
+    <link rel="stylesheet" href="/BTL_PHP/admin/edit.css">
+
+
 </head>
 <body>
+        <h1>Sửa giảng viên </h1>
+
     <form action="" method="post">
         <table>
             <tr>
@@ -95,13 +111,14 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" name="Sua" value="Sửa">
+                    <a style="text-decoration: none; border: 1px solid black;" href="quanlygiangvien.php">Quay lại</a>
                 </td>
                 <td>
-                    <a style="text-decoration: none; border: 1px solid black;" href="quanlygiangvien.php">Quay lại</a>
+                    <input type="submit" name="Sua" value="Sửa">
                 </td>
             </tr>
         </table>
+        <div><?php echo $message; ?></div>
     </form>
 </body>
 </html>

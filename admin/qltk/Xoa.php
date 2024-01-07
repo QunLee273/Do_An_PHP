@@ -1,17 +1,13 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'qldsv');
+    require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
     if(isset($_GET["id"])){
         $id = $_GET["id"];
 
         $sql = "DELETE FROM taikhoan WHERE id = '$id'";
-        $result = mysqli_query($conn, $sql);
+        execute($sql);
 
-        if($result){
-            header("Location: quanlynguoidung.php");
-            exit;
-        }
+        echo '<script>alert("Xóa thành công"); window.location.href = "quanlynguoidung.php";</script>';
+        exit;
     }
-
-    mysqli_close($conn);
 ?>
