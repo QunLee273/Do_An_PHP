@@ -30,6 +30,36 @@
             $stmt->execute( [$code, $email] );
 
             $kq = Send($email, $code);
+
+            if ($kq) {
+                $loi = '<span style="color: green;
+                                margin-top: 10px;
+                                display: block;
+                                text-align: center;
+                                ">Gửi thành công.<br>Vui lòng kiểm tra email của bạn.</span>';
+
+                $sql = "SELECT * FROM taikhoan WHERE Code = '$code'";
+                $list = executeResult($sql);
+        
+                if ($list != NULL && count($list) > 0) {
+                    $tk = $list[0];
+                    $id = $tk['id'];
+                }
+                echo '<script>
+                        setTimeout(function() {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "xoaCode.php", true);
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            xhr.send("id=' . $id . '");
+                        }, 60000);
+                        </script>';
+            } else {
+                $loi = '<span style="color: red;
+                                margin-top: 10px;
+                                display: block;
+                                text-align: center;
+                                ">Mail chưa được gửi.</span>';
+            }
         }
     }
     
@@ -48,12 +78,11 @@
             $mail->Password = 'jmlh xdri qwyv xeyz';   // SMTP password
             $mail->SMTPSecure = 'ssl';  // encryption TLS/SSL 
             $mail->Port = 465;  // port to connect to                
-            $mail->setFrom('quan.btlphp2023@gmail.com', 'Admin' ); 
+            $mail->setFrom('quan.btlphp2023@gmail.com', 'Trường QNT' ); 
             $mail->addAddress($email, 'TênNgườiNhận'); 
             $mail->isHTML(true);  // Set email format to HTML
-            $mail->Subject = 'Code reset password';
-            $noidungthu = '<p>Code của bạn là:</p>
-                            <h1>' . $code . '</h1>'; 
+            $mail->Subject = 'Reset password';
+            $noidungthu = '<h1><a href="http://localhost/BTL_PHP/login/chanePass.php?code=' . $code . '">Đặt lại mật khẩu</a></h1>'; 
             $mail->Body = $noidungthu;
             $mail->smtpConnect( array(
                 "ssl" => array(
@@ -64,46 +93,9 @@
             ));
             $mail->send();
 
-            // echo '<script>
-            //         document.getElementById("sendCode").style.display = "none";
-            //         document.getElementById("inputCode").style.display = "block";
-            //     </script>';
-
-            // <script>
-            //         // Đặt thời gian kết thúc
-            //         var countdownDate = new Date().getTime() + 60000; // Thời gian hiện tại + 60 giây
-            
-            //         // Cập nhật đếm ngược mỗi 1 giây
-            //         var countdown = setInterval(function() {
-            //             // Lấy thời gian hiện tại
-            //             var now = new Date().getTime();
-            
-            //             // Tính thời gian còn lại
-            //             var distance = countdownDate - now;
-            
-            //             // Hiển thị thẻ input:submit nếu đếm ngược kết thúc
-            //             if (distance <= 0) {
-            //                 clearInterval(countdown);
-
-            //                 $sql = "UPDATE taikhoan SET Code = NULL WHERE Email = '$email'";
-            //                 execute($sql);
-
-            //     } else {
-            //             // Tính toán số giây còn lại
-            //             var seconds = Math.floor(distance / 1000);
-        
-            //             // Hiển thị kết quả trong thẻ có id "countdown"
-            //             document.getElementById("countdown").innerHTML = "(" + seconds + " giây)";
-            //             }
-            //         }, 1000);
-            //     </script>
-
+            return true;
         } catch (Exception $e) {
-            $loi = '<span style="color: red;
-                                margin-top: 10px;
-                                display: block;
-                                text-align: center;
-                                ">Mail chưa được gửi.</span>';
+            return false;
         }
     }
 ?>
@@ -184,42 +176,20 @@
 </head>
 <body>
     <div>
-        <form action="" method="post" id="sendCode">
-            <h1>Forgot password</h1>
-            <?php if ($loi!=""){ ?>
-                    <div><?php echo $loi; ?></div>
-            <?php } ?>
-            
-            <div>
-                <label for="email">Nhập email:</label>
-                <input type="email" name="email" placeholder="Nhập email của bạn" required/><br>
+        <form action="" method="post" >
+            <div id="sendCode">
+                <h1>Forgot password</h1>
+                <?php if ($loi!=""){ ?>
+                        <div><?php echo $loi; ?></div>
+                <?php } ?>
+                
+                <div>
+                    <label for="email">Nhập email:</label>
+                    <input type="email" name="email" placeholder="Nhập email của bạn" required/><br>
+                </div>
+                <a style="text-decoration: none; border: 1px solid black;" href="/BTL_PHP/login/index.php">Quay lại</a>
+                <button name="forgot" class="button">Gửi</button>
             </div>
-            <button name="forgot" class="button">Gửi</button>
-        </form>
-        <form action="" method="post" id="inputCode" style="display: none;">
-            <h1>Forgot password</h1>
-            <?php if ($loi!=""){ ?>
-                    <div><?php echo $loi; ?></div>
-            <?php } ?>
-            
-            <div>
-                <label for="text">Nhập code:</label>
-                <input type="text" name="code" placeholder="Nhập code trong mail" required/><br>
-            </div>
-            <button name="conf" class="button">Xác nhận</button>
-            <button name="again" class="button">Gửi lại <span id="countdown"></span></button>
-        </form>
-        <form action="" method="post" id="resetPass" style="display: none;">
-            <h1>Forgot password</h1>
-            <?php if ($loi!=""){ ?>
-                    <div><?php echo $loi; ?></div>
-            <?php } ?>
-            
-            <div>
-                <label for="email">Nhập email:</label>
-                <input type="email" name="email" placeholder="Nhập email của bạn" required/><br>
-            </div>
-            <button name="forgot" class="button">Gửi</button>
         </form>
     </div>
 </body>
