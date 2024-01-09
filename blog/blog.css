@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+    margin: 0;
+    padding: 1px;
+    box-sizing: border-box;
+    font-family: "poppins" , sans-serif;
+}
+body{
+    background-image: url("/BTL_PHP/png/slide.jpg");
+}
+
+a{
+    text-decoration: none;
+    
+}
+.header{
+    position:fixed ;
+    height: 80px;
+    width: 100%;
+    z-index: 100;
+    padding: 0 20px;
+}
+
+.nav{
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.nav_logo,
+.nav_link,
+.button{
+    color: rgb(195, 185, 185);
+}
+.nav,
+.nav_items{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_logo{
+    font-size: 25px;
+}
+.nav_items{
+    column-gap:25px ;
+}
+.nav_link:hover{    
+    color: #d9d9d9;
+}
+
+.button{
+    padding: 6px 24px;
+    border: 2px solid #fff;
+    background: transparent ;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.border:active{
+    transform: scale(0.98);
+
+}
+/* home */
+
+.home{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-image: url("/BTL_PHP/png/background.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* Form */
+
+.form_container{
+    position: absolute;
+    max-width: 320px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    z-index: 101;
+    background: #fff    ;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    
+}
+.home.show .form_container{
+    opacity: 1;
+    pointer-events: auto;
+}
+.form_close{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #0b0217;
+    font-size: 22px;
+    opacity: 0.7;
+
+}
+.form_container h2{
+    font-size: 22px;
+    color: #0b0217;
+    text-align: center;
+}
+.input_box{
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+    height: 40px;
+
+}
+.input_box input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0 30px;
+    color: #333;
+    transition: all 0.2s ease;
+    border-bottom: 1.5px solid #aaaaaa;
+
+}
+
+.input_box input:focus{
+    border-color: #7d2ae8;
+}
+.input_box i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #707070;
+}
+.input_box i.email,
+.input_box i.password{
+    left: 0;
+}
+.input_box input:focus~i.email,
+.input_box input:focus~i.password {
+    color: #7d2ae8;
+}
+.input_box i.pw_hide{
+    right: 0;
+    font-size: 18px;
+}
+.optine_field{
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_container a{
+    color: #7d2ae8;
+    font-size: 12px;
+    
+}
+
+.form_container a:hover{
+    text-decoration: underline;
+}
+.checkbox{
+    display: flex;
+    column-gap: 8px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.checkbox input{
+    accent-color: #7d2ae8;
+}
+.checkbox label { 
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    color: #0b0217;
+}
+.form_container .button{
+    background: #7d2ae8;
+    margin-top: 30px;
+    width: 100%;
+    padding:  10px 0;
+    border-radius: 10px;
+    color: #333;
+}
+
+/* Footer */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(85 49 49 / 80%);
+    padding: 30px;
+}
+  
+.footer_logo {
+    color: #ffffff;
+    font-size: 24px;
+}
+  
+.footer_creator,
+.footer_contact {
+    text-align: center;
+}
+  
+.footer_creator p,
+.footer_contact p {
+    margin: 5px;
+}
+  
+.footer_creator p {
+    color: #ffffff;
+}
+  
+.footer_contact p {
+    color: #ffffff;
+}
+
+
+/* accordion */
+
+.accordion{
+    width: 98%;
+    height: 255px;
+    overflow: hidden;
+
+    margin: 50px auto;
+    padding: 1px;
+    margin: 110px 0px;
+    display: block;
+
+    /* margin: 100px auto; */
+
+}
+
+.accordion ul {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion li {
+
+    --img-1: url(/BTL_PHP/png/home_png/4.jpg);
+    --img-2: url(/BTL_PHP/png/home_png/5.jpg);
+    --img-3: url(/BTL_PHP/png/home_png/6.jpg);
+
+
+    &:nth-child(1){
+        background-image: var(--img-1);
+    }
+    &:nth-child(2){
+        background-image: var(--img-2);
+    }
+    &:nth-child(3){
+        background-image: var(--img-3);
+    }
+
+    width: 30%;
+    height: 255px;
+    display: table-cell;
+    vertical-align: bottom;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transition: all 500ms ease;
+}
+
+.accordion li div {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+
+}
+
+.accordion li div a{
+    display: block;
+    height: 250px;
+    width: 100%;
+    color: #fff;
+    position: relative;
+    z-index: 3;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Open Sans , sans-serif;
+    transition: all 200ms ease;
+}
+
+.accordion li div a *{
+    width: 100%;
+    margin: 0;
+    text-overflow: ellipsis;
+    position: relative;
+    z-index: 5;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateX(-20px);
+    transition: all 400ms ease;
+}
+
+.accordion li div a h2 {
+    font-family: Montserrat , sans-serif;
+    text-overflow: clip;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    top: 160px;
+
+}
+
+.accordion li div a p{
+    top: 160px;
+    font-size: 13.5px;
+
+}
+
+.accordion li div a *{
+    opacity: 0;
+}
+.accordion ul:hover li{
+    width: 10%;
+}
+
+.accordion ul:hover li:hover {
+    width: 80%;
+
+}
+
+.accordion ul:hover li:hover a{
+    background: #00000066;
+}
+.accordion ul:hover li:hover a *{
+    opacity: 1;
+    transform: translateX(0);
+}

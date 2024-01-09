@@ -80,7 +80,7 @@
         <ul class="nav_items">
            <li class="nav_items">
             <a href="#" class="nav_link">Home</a>
-            <a href="#" class="nav_link">BLog</a>
+            <a href="/BTL_PHP/blog/blog.html" class="nav_link">BLog</a>
             <a href="#footer" class="nav_link">Contact</a>
            </li>
         </ul>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #837583;
+            color: #333;
+        }
+
+        header {
+            background-color: darkblue;
+            color: white;
+            padding: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        article {
+            margin-bottom: 20px;
+        }
+
+        article h1 {
+            color: darkblue;
+        }
+
+        article p {
+            line-height: 1.6;
+        }
+
+        .full-screen-image {
+            width: 83%; /* Giảm kích thước đi 30% */
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(104 87 87 / 80%);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .footer_logo {
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        .footer_creator,
+        .footer_contact {
+            text-align: center;
+        }
+
+        .footer_creator p,
+        .footer_contact p {
+            margin: 5px;
+        }
+
+        .footer_creator p {
+            color: #ffffff;
+        }
+
+        .footer_contact p {
+            color: #ffffff;
+        }
+        .nav_logo,
+      .nav_link,
+      .button {
+        color: #fff; /* Màu sắc mới cho text trong header */
+        text-decoration: none;
+      }
+
+      .nav_items {
+        display: flex;
+        column-gap: 25px;
+        align-items: center;
+        height: 100%;
+      }
+
+      .nav_logo {
+        font-size: 20px; /* Giảm kích thước của logo */
+      }
+      .nav {
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0 20px;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/BTL_PHP/blog/blog.html" class="nav_logo"> Đại học QNT </a>
+            <nav>
+                <ul>
+                    <li><a href="/BTL_PHP/blog/blog.html">Home</a></li>
+                    <li><a href="/BTL_PHP/blog/blog_con/blog-list/blog-list.html">Product</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <h1>
+                Trường Đại Học QNT - Khám phá không gian tri thức
+            </h1>
+            <p>
+                Trường Đại Học QNT không chỉ là nơi cung cấp kiến thức, mà còn là người bạn đồng hành tận tâm trên hành trình phát triển cá nhân của bạn. Với cam kết đào tạo chất lượng, chúng tôi tự hào mang đến cho sinh viên những trải nghiệm học tập độc đáo và bổ ích, nhằm khám phá và phát triển tối đa tiềm năng của mỗi cá nhân.
+
+
+            </p>
+            
+            <img
+                src="/BTL_PHP/png/home_png/1.jpg"
+                alt="Hình ảnh full screen"
+                class="full-screen-image"
+            />
+            <p>
+                Tại QNT, chúng tôi không chỉ làm chủ về việc truyền đạt kiến thức chuyên môn sâu rộng mà còn tập trung vào việc xây dựng nền tảng kỹ năng mềm vững chắc. Chúng tôi tin rằng, để thành công trong thế giới đang biến đổi nhanh chóng, bạn cần nhiều hơn là chỉ biết lý thuyết. Vì vậy, chúng tôi hỗ trợ sinh viên phát triển những kỹ năng như giao tiếp, quản lý thời gian, làm việc nhóm, và tư duy phê phán – những kỹ năng quan trọng giúp họ tự tin đối mặt với mọi thách thức.
+
+Đội ngũ giảng viên và chuyên gia tại trường không ngừng nỗ lực để đảm bảo rằng quá trình học tập không chỉ là việc thu thập thông tin mà còn là hành trình khám phá bản thân và xây dựng định hình tương lai. Chúng tôi khuyến khích sự sáng tạo, tư duy phê phán và ý thức cộng đồng, tạo điều kiện cho sinh viên phát triển không chỉ là những chuyên gia chuyên nghiệp mà còn là những người đóng góp tích cực cho xã hội.
+
+Hãy đồng hành cùng chúng tôi trên con đường chinh phục tri thức và định hình tương lai của bạn. Đăng ký ngay để trải nghiệm không gian học tập sáng tạo và cơ hội phát triển không ngừng tại Trường Đại Học QNT!
+            </p>
+        </article>
+    </main>
+    <footer id="footer">
+        <div class="footer_logo">Đại học QNT</div>
+        <div class="footer_creator">
+            <table border="0">
+                <tr>
+                    <td><p>Created by:</p></td>
+                    <td><p>Lê Minh Quân</p></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p>Vũ Hoài Nam</p></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p>Bùi Văn Tuấn</p></td>
+                </tr>
+            </table>
+            <p>2023 &copy; All rights reserved</p>
+        </div>
+        <div class="footer_contact">
+            <table border="0">
+                <tr>
+                    <td><p>Contact:</p></td>
+                    <td><p>20212504@eaut.edu.vn</p></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p>20212501@eaut.edu.vn</p></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p>20212612@eaut.edu.vn</p></td>
+                </tr>
+            </table>
+            <p>Phone: 123-456-7890</p>
+        </div>
+    </footer>
+</body>
+</html>

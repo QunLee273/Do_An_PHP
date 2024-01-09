@@ -100,7 +100,8 @@
       </div>
       <div class="sidebar_menu">
         <div class="logo">
-          <a href="#">Giảng Viên QNT </a>
+          <a href="/BTL_PHP/giangvien/giangvien.php
+          ">Giảng Viên QNT </a>
         </div>
         <div class="btn_two">
           <label for="check">
@@ -121,7 +122,7 @@
             </li>
             <li>
               <form action="" method="post">
-                <button name="btnEx">Xuất bảng điểm</button>
+                <button name="btnEx" class="btnEx">Xuất bảng điểm</button>
               </form>      
             </li>
             <li><i class="fas fa-qrcode"></i>
