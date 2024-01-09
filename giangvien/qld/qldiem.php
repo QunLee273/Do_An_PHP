@@ -1,3 +1,19 @@
+<?php 
+  session_start();
+  $email = $_SESSION['email'];
+
+  require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
+
+  $sql = "SELECT * FROM taikhoan WHERE Email LIKE '%$email%'";
+
+  $tenList = executeResult($sql);
+
+  if ($tenList != null && count($tenList) > 0) {
+    $ten = $tenList[0];
+    $hoten = $ten['HoTen'];
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
