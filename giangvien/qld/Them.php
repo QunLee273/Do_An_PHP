@@ -89,9 +89,77 @@
             return true;
         }
     </script>
+     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            background-image: url("https://cdn.pixabay.com/photo/2018/08/23/07/35/thunderstorm-3625405_1280.jpg");
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        a, input[type="submit"] {
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover, input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #errorContainer {
+            color: red;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        form{
+            background: #ffffff66;
+        }
+        input[type="text"]{
+            background: #ffffff00;
+        }
+    </style>
 </head>
 <body>
-    <h1>Thêm</h1>
+    <h1>Thêm Sinh viên</h1>
     <form name="myForm" action="" method="post" onsubmit="return ktForm()">
         <table>
             <tr>
