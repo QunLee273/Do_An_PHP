@@ -1,26 +1,26 @@
 <?php
-session_start();
-$email = $_SESSION['email'];
+  session_start();
+  $email = $_SESSION['email'];
 
-require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
+  require_once("D:/PHP/xampp/htdocs/BTL_PHP/connect/connDB.php");
 
-$sql = "SELECT * FROM taikhoan WHERE Email LIKE '%$email%'";
+  $sql = "SELECT * FROM taikhoan WHERE Email LIKE '%$email%'";
 
-$tenList = executeResult($sql);
+  $tenList = executeResult($sql);
 
-if ($tenList != null && count($tenList) > 0) {
-  $ten = $tenList[0];
-  $hoten = $ten['HoTen'];
-}
+  if ($tenList != null && count($tenList) > 0) {
+    $ten = $tenList[0];
+    $hoten = $ten['HoTen'];
+  }
 
-$sql2 = "SELECT * FROM giangvien WHERE Email LIKE '%$email%'";
+  $sql2 = "SELECT * FROM giangvien WHERE Email LIKE '%$email%'";
 
-$gvList = executeResult($sql2);
+  $gvList = executeResult($sql2);
 
-if ($gvList != null && count($gvList) > 0) {
-  $gv = $gvList[0];
-  $mgv = $gv['MaGV'];
-}
+  if ($gvList != null && count($gvList) > 0) {
+    $gv = $gvList[0];
+    $mgv = $gv['MaGV'];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -70,16 +70,6 @@ if ($gvList != null && count($gvList) > 0) {
           </li>
         </ul>
       </div>
-      <div class="social_media">
-        
-
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-
-        
-      </div>
     </div>
   </div>
   </div>
@@ -90,7 +80,6 @@ if ($gvList != null && count($gvList) > 0) {
         <table id="myTable">
           <tr>
             <th>STT</th>
-            <th>Mã GV</th>
             <th>Họ tên giảng viên</th>
             <th>Môn</th>
             <th>Lịch</th>
@@ -110,7 +99,6 @@ if ($gvList != null && count($gvList) > 0) {
           foreach ($tgList as $tg) {
             echo "<tr>
                             <td>" . $stt . "</td>
-                            <td>" . $tg['MaGV'] . "</td>
                             <td>" . $tg['HoTen'] . "</td>
                             <td>" . $tg['TenMon'] . "</td>
                             <td>" . $tg['Lich'] . "</td>

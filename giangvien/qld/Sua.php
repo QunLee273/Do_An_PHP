@@ -19,45 +19,53 @@
     }
     
     if(isset($_POST["sua"])){
-        $id = $_POST["id"];
-        $n_mon = $_POST["mon"];
-        $n_chuyen = $_POST["chuyen"];
-        $n_giua = $_POST["giua"];
-        $n_cuoi = $_POST["cuoi"];
-        $dtb = ($n_chuyen + $n_giua*2 + $n_cuoi*7)/10;
+        if (isset($_POST['id']) && isset($_POST['id']) && isset($_POST['id']) && isset($_POST['id']) && isset($_POST['id'])) {
+            $id = $_POST["id"];
+            $n_mon = $_POST["mon"];
+            $n_chuyen = $_POST["chuyen"];
+            $n_giua = $_POST["giua"];
+            $n_cuoi = $_POST["cuoi"];
+            $dtb = ($n_chuyen + $n_giua*2 + $n_cuoi*7)/10;
 
-        $sql1 = "SELECT * FROM monhoc WHERE MaMon = '$n_mon'";
-        $list1 = executeResult($sql1);
+            $sql1 = "SELECT * FROM monhoc WHERE MaMon = '$n_mon'";
+            $list1 = executeResult($sql1);
 
-        if (!empty($list1)) {
-            if (!is_numeric($n_chuyen) || !is_numeric($n_giua) || !is_numeric($n_cuoi)) {
+            if (!empty($list1)) {
+                if (!is_numeric($n_chuyen) || !is_numeric($n_giua) || !is_numeric($n_cuoi)) {
+                    $message = '<span style="color: red;
+                                            margin-top: 10px;
+                                            display: block;
+                                            text-align: center;
+                                            ">Vui lòng nhập giá trị số cho Chuyên cần, Giữa kỳ và Cuối kỳ.</span>';
+                } else {
+                    if ($n_chuyen >= 0 && $n_chuyen <= 10 && $n_giua >= 0 && $n_giua <= 10 && $n_cuoi >= 0 && $n_cuoi <= 10) {
+                        $sql = "UPDATE qldiem SET MaMon = '$n_mon', ChuyenCan = '$n_chuyen',
+                                                GiuaKy = '$n_giua', CuoiKy = '$n_cuoi',
+                                                DiemTB = '$dtb' WHERE id = '$id'";
+                        execute($sql);
+                        echo '<script>alert("Cập nhật thành công"); window.location.href = "qldiem.php";</script>';
+                        exit;
+                    } else {
+                        $message = '<span style="color: red;
+                                            margin-top: 10px;
+                                            display: block;
+                                            text-align: center;
+                                            ">Điểm không được lớn hơn 10 hoặc nhỏ hơn 0.</span>';
+                    }
+                }
+            } else {
                 $message = '<span style="color: red;
                                         margin-top: 10px;
                                         display: block;
                                         text-align: center;
-                                        ">Vui lòng nhập giá trị số cho Chuyên cần, Giữa kỳ và Cuối kỳ.</span>';
-            } else {
-                if ($n_chuyen >= 0 && $n_chuyen <= 10 && $n_giua >= 0 && $n_giua <= 10 && $n_cuoi >= 0 && $n_cuoi <= 10) {
-                    $sql = "UPDATE qldiem SET MaMon = '$n_mon', ChuyenCan = '$n_chuyen',
-                                            GiuaKy = '$n_giua', CuoiKy = '$n_cuoi',
-                                            DiemTB = '$dtb' WHERE id = '$id'";
-                    execute($sql);
-                    echo '<script>alert("Cập nhật thành công"); window.location.href = "qldiem.php";</script>';
-                    exit;
-                } else {
-                    $message = '<span style="color: red;
-                                        margin-top: 10px;
-                                        display: block;
-                                        text-align: center;
-                                        ">Điểm không được lớn hơn 10 hoặc nhỏ hơn 0.</span>';
-                }
+                                        ">Mã môn không tồn tại.</span>';
             }
         } else {
             $message = '<span style="color: red;
-                                    margin-top: 10px;
-                                    display: block;
-                                    text-align: center;
-                                    ">Mã môn không tồn tại.</span>';
+                                        margin-top: 10px;
+                                        display: block;
+                                        text-align: center;
+                                        ">Không được để trống.</span>';
         }
     }
 ?>
