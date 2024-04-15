@@ -49,6 +49,8 @@
                         header("Location: /BTL_PHP/sinhvien/sinhvien.php");
                         exit;
                     }
+                } else {
+                    echo '<script>alert("Sai tài khoản hoặc mật khẩu");</script>';
                 }
             } else {
                 echo '<script>alert("Sai tài khoản hoặc mật khẩu");</script>';

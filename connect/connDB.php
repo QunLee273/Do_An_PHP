@@ -9,7 +9,7 @@
         // sql
         mysqli_query($conn, $sql);
 
-        // Dóng kết nối
+        // Đóng kết nối
         mysqli_close($conn);
     }
 
@@ -26,8 +26,9 @@
             $list[] = $row;
         }
 
-        // Dóng kết nối
+        // Đóng kết nối
         mysqli_close($conn);
 
         return $list;
     }
+?>

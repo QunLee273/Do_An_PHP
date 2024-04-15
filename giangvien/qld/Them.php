@@ -13,10 +13,17 @@
     }
 
     $message = "";
+    $ChuyenCan = "";
+    $GiuaKy = "";
+    $CuoiKy = "";
 
     if(isset($_POST['Them'])) {
         $msv = $_POST['msv'];
         $mamon = $_POST['mamon'];
+        $ChuyenCan = (float)$_POST['cc'];
+        $GiuaKy = (float)$_POST['gk'];
+        $CuoiKy = (float)$_POST['ck'];
+        $dtb = ($ChuyenCan + $GiuaKy*2 + $CuoiKy*7)/10;
         
         $sql2 = "SELECT * FROM sinhvien WHERE MSV = '$msv'";
         $list2 = executeResult($sql2);
@@ -26,10 +33,26 @@
             $list3 = executeResult($sql3);
 
             if (!empty($list3)) {
-                $sql = "INSERT INTO qldiem (MSV, MaMon, ChuyenCan, GiuaKy, CuoiKy, DiemTB, MaGV) VALUES ('$msv', '$mamon', '', '', '', '', '$magv')";
-                $result = execute($sql);
-
-                echo '<script>alert("Thêm thành công");</script>';
+                if (!is_numeric($ChuyenCan) || !is_numeric($GiuaKy) || !is_numeric($CuoiKy)) {
+                    $message = '<span style="color: red;
+                                            margin-top: 10px;
+                                            display: block;
+                                            text-align: center;
+                                            ">Vui lòng nhập giá trị số cho Chuyên cần, Giữa kỳ và Cuối kỳ.</span>';
+                } else {
+                    if ($ChuyenCan >= 0 && $ChuyenCan <= 10 && $GiuaKy >= 0 && $GiuaKy <= 10 && $CuoiKy >= 0 && $CuoiKy <= 10) {
+                        $sql = "INSERT INTO qldiem (MSV, MaMon, ChuyenCan, GiuaKy, CuoiKy, DiemTB, MaGV) 
+                                VALUES ('$msv', '$mamon', '$ChuyenCan', '$GiuaKy', '$CuoiKy', '$dtb', '$magv')";
+                        execute($sql);
+                        echo '<script>alert("Thêm thành công"); window.location.href = "Them.php";</script>';
+                    } else {
+                        $message = '<span style="color: red;
+                                            margin-top: 10px;
+                                            display: block;
+                                            text-align: center;
+                                            ">Điểm không được lớn hơn 10 hoặc nhỏ hơn 0.</span>';
+                    }
+                }
             } else {
                 $message = '<span style="color: red;
                                     margin-top: 10px;
@@ -63,6 +86,9 @@
         function ktForm() {
             var mgv = document.forms["myForm"]["msv"].value.trim();
             var mamon = document.forms["myForm"]["mamon"].value.trim();
+            var ChuyenCan = document.forms["myForm"]["cc"].value.trim();
+            var GiuaKy = document.forms["myForm"]["gk"].value.trim();
+            var CuoiKy = document.forms["myForm"]["ck"].value.trim();
 
             var errorMessages = [];
 
@@ -176,6 +202,30 @@
                 </td>
                 <td>
                     <input type="text" name="mamon">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Chuyên cần:
+                </td>
+                <td>
+                    <input type="text" name="cc">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Giữa kỳ:
+                </td>
+                <td>
+                    <input type="text" name="gk">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Cuối kỳ:
+                </td>
+                <td>
+                    <input type="text" name="ck">
                 </td>
             </tr>
             <tr>
