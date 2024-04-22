@@ -63,8 +63,8 @@
       <form action="" method="post">
         <div class="manage-container">
           <button class="manage-button" name="Them"> <a href="Them.php">Thêm</a></button>
-          <input type="text" name="timkiem">
-          <input type="submit" name="btnTim" value="Tìm Kiếm">
+          <input type="text" class="txttimkiem" name="timkiem">
+          <input type="submit" class="btntiemkiem" name="btnTim" value="Tìm Kiếm">
         </div>
 
         <table id="myTable" border=1>
